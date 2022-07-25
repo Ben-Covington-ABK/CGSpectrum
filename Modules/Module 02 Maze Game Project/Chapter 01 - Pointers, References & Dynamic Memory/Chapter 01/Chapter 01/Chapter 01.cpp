@@ -17,6 +17,7 @@ int Input()
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
+			cout << "Sorry that was not an integer." << endl;
 		}		
 	}
 	return input;
