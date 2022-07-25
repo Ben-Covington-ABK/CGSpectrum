@@ -4,9 +4,30 @@
 
 using namespace std;
 
-class Car : public Vehicle {};
-class Boat : public Vehicle {};
-class Airplane : public Vehicle {};
+class Car : public Vehicle 
+{
+public: 
+	Car()
+	{
+		name = "Car";
+	}
+};
+class Boat : public Vehicle 
+{
+public:
+	Boat()
+	{
+		name = "Boat";
+	}
+};
+class Airplane : public Vehicle 
+{
+public:
+	Airplane() 
+	{ 
+		name = "Airplane"; 
+	}
+};
 
 int GetNum()
 {
@@ -83,6 +104,7 @@ int GetLargest()
 int main()
 {
 	bool active = true;
+	int miles;
 	Vehicle rental;
 	while (active)
 	{
@@ -95,8 +117,10 @@ int main()
 			break;
 		case 2:
 			rental = TestDrive();
-			cout << "Traveled " << rental.Drive(10)
-				<< " miles" << endl;
+			cout << "How many miles to drive?" << endl;
+			miles = GetNum();
+			cout << "Traveled " << rental.Drive(miles)
+				<< " miles in a " << rental.name << endl;
 			break;
 		case 3:
 		default:

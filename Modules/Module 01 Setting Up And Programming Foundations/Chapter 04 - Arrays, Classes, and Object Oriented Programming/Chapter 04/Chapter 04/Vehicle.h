@@ -1,14 +1,12 @@
 #pragma once
-#include <string.h>
+#include <string>
 
 class Vehicle
 {
-	int miles;
+	int miles = 0;
 public:
-	int Drive(int m) 
-	{
-		miles += m;
-		return miles;
-	};
+	std::string name;
+	Vehicle();
+	int Drive(int m);
 };	
 
