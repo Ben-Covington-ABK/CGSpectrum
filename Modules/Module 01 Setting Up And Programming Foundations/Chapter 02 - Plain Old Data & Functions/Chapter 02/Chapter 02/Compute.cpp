@@ -1,46 +1,30 @@
 #include <iostream>
-#include <math.h>
 
 using namespace std;
 
-int Input()
+int GetNum()
 {
-    // Prompt user for function selection
-    cout << "Select a mode:" << endl
-        << "1. Sum" << endl
-        << "2. Average" << endl
-        << "3. Cube" << endl
-        << "4. Exit" << endl;
-
-    // Store user selection
-    int selection;
-    cin >> selection;
-    return (int)selection;
-}
-
-float GetNum()
-{
-    cout << "Enter A Number" << endl;
-    float temp;
-    cin >> temp;
-    system("cls");
-    return temp;
+    int number;
+    bool valid = false;
+    while (!valid)
+    {
+        cout << "Please enter a number" << endl;
+        cin >> number;
+        valid = !cin.fail();
+        system("cls");
+        if (!valid)
+        {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Sorry that was not an number." << endl;
+        }
+    }
+    return number;
 }
 
 int Sum()
 {
-    float sum = 0.0f;
-    for (int i = 0; i < 3;)
-    {
-        float input = GetNum();
-        if (input)
-        {
-            i++;
-            sum += input;
-        }
-        continue;
-    }
-    return round(sum);
+    return (GetNum() + GetNum() + GetNum());
 }
 
 int Average()
@@ -51,9 +35,8 @@ int Average()
 
 int Cube()
 {
-    float input = GetNum();
-    float cubed = input * input * input;
-    return round(cubed);
+    int num = GetNum();
+    return (num * num * num);
 }
 
 int main()
@@ -62,8 +45,12 @@ int main()
     int selection;
     while (active)
     {
-        selection = Input();
-        system("cls");
+        cout << "Select a mode:" << endl
+            << "1. Sum" << endl
+            << "2. Average" << endl
+            << "3. Cube" << endl
+            << "4. Exit" << endl;
+        selection = GetNum();
         switch (selection)
         {
         case 1:

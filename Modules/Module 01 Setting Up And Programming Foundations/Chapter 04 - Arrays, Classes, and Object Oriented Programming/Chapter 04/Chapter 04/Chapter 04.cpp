@@ -10,9 +10,22 @@ class Airplane : public Vehicle {};
 
 int GetNum()
 {
-	cout << "Please enter a number" << endl;
 	int number;
-	cin >> number;
+	bool valid = false;
+	while(!valid)
+	{
+		cout << "Please enter a number" << endl;
+		cin >> number;
+		valid = !cin.fail();
+		system("cls");
+		if (!valid)
+		{
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
+			cout << "Sorry that was not an number." << endl;
+		}
+	}
+	
 	return number;
 }
 
@@ -32,7 +45,6 @@ Vehicle TestDrive()
 		<< "3. Airplane" << endl;
 	int input = GetNum();
 	Vehicle rental = Vehicle();
-	system("cls");
 	switch (input)
 	{
 	case 1:
@@ -59,11 +71,9 @@ int GetLargest()
 	cout << "How many numbers will there be?" << endl;
 	int size = GetNum();
 	int largest = -INFINITY;
-	system("cls");
 	for (int i = 0; i < size; i++)
 	{
 		int num = GetNum();
-		system("cls");
 		nums.push_back(num);
 		largest = num > largest ? num : largest;
 	}
@@ -77,7 +87,6 @@ int main()
 	while (active)
 	{
 		int input = Input();
-		system("cls");
 		switch (input)
 		{
 		case 1:

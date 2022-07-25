@@ -3,66 +3,67 @@
 
 using namespace std;
 
+int GetNum()
+{
+    int number;
+    bool valid = false;
+    while (!valid)
+    {
+        cout << "Please enter a number" << endl;
+        cin >> number;
+        valid = !cin.fail();
+        system("cls");
+        if (!valid)
+        {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Sorry that was not an number." << endl;
+        }
+    }
+    return number;
+}
+
 int Input()
 {
     cout << "1. Leap Year Calc" << endl
         << "2. Find Factors" << endl
         << "3. Exit" << endl;
-    int input;
-    cin >> input;
-    return input;
+    return GetNum();
 }
 
 bool IsLeapYear()
 {
     cout << "Enter a year" << endl;
-    int year;
-    cin >> year;
-    if(year % 400 == 0)
-    {
-        return true;
-    } 
-    else if (year % 100 == 0)
-    {
-        return false;
-    }
-    else if (year % 4 == 0)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    int year = GetNum();
+    return year % 400 == 0
+        ? true : year % 100 == 0
+        ? false : year % 4 == 0;
 }
 
 string FindFactors()
 {
     string factors;
-    int number;
-    cout << "Please enter a number" << endl;
-    cin >> number;
+    int number = GetNum();
     for(int i = 1; i <= number; i++)
     {
-        factors += (number % i == 0) ? to_string(i) + " " : "";
+        factors += (number % i == 0) 
+            ? to_string(i) + " " : "";
     }
     return factors;
 }
 
 int main()
 {
-    bool active = true;
     int input;
-    string isLY;
+    bool active = true;
     while (active)
     {
         input = Input();
-        system("cls");
         switch (input)
         {
         case 1:
-            isLY = IsLeapYear() ? "is" : "is not";
-            cout << "Year " << isLY << " leap year." << endl;
+            cout << "Year " << (IsLeapYear() ? "is" : "is not") 
+                << " leap year." << endl;
             break;
         case 2:
             cout << "Number has factors: " << FindFactors() << endl;
