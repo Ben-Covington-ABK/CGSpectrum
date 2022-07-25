@@ -6,14 +6,14 @@ using namespace std;
 int Input()
 {
 	int input;
-	bool invalid = true;
-	while (invalid) 
+	bool valid = false;
+	while (!valid) 
 	{
 		cout << "Please enter an integer." << endl;
 		cin >> input;
 		system("cls");
-		invalid = cin.fail();
-		if(invalid)
+		valid = !cin.fail();
+		if(!valid)
 		{
 			cin.clear();
 			cin.ignore(INT_MAX, '\n');
