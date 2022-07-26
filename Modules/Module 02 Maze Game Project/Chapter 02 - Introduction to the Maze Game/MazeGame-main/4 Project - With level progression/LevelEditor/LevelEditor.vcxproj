@@ -20,22 +20,22 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{9FFAED25-22A0-4CF5-92AD-0E31E24EEBFA}</ProjectGuid>
+    <ProjectGuid>{344305F8-360B-4D6A-BAD3-62F8A483C66B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>Project</RootNamespace>
+    <RootNamespace>LevelEditor</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -86,7 +86,7 @@
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
-      <WarningLevel>Level4</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -106,10 +106,11 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -151,49 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AudioManager.cpp" />
-    <ClCompile Include="Door.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="GameplayState.cpp" />
-    <ClCompile Include="Goal.cpp" />
-    <ClCompile Include="HighScoreState.cpp" />
-    <ClCompile Include="Key.cpp" />
-    <ClCompile Include="Level.cpp" />
-    <ClCompile Include="Life.cpp" />
-    <ClCompile Include="LoseState.cpp" />
-    <ClCompile Include="MainMenuState.cpp" />
-    <ClCompile Include="Money.cpp" />
-    <ClCompile Include="PlacableActor.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Project.cpp" />
-    <ClCompile Include="SettingsState.cpp" />
-    <ClCompile Include="StateMachineExampleGame.cpp" />
-    <ClCompile Include="WinState.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="AudioManager.h" />
-    <ClInclude Include="Door.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="GameplayState.h" />
-    <ClInclude Include="GameState.h" />
-    <ClInclude Include="GameStateMachine.h" />
-    <ClInclude Include="Goal.h" />
-    <ClInclude Include="HighScoreState.h" />
-    <ClInclude Include="Key.h" />
-    <ClInclude Include="Level.h" />
-    <ClInclude Include="Life.h" />
-    <ClInclude Include="LoseState.h" />
-    <ClInclude Include="MainMenuState.h" />
-    <ClInclude Include="Money.h" />
-    <ClInclude Include="PlacableActor.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Point.h" />
-    <ClInclude Include="SettingsState.h" />
-    <ClInclude Include="StateMachineExampleGame.h" />
-    <ClInclude Include="Utility.h" />
-    <ClInclude Include="WinState.h" />
+    <ClCompile Include="LevelEditor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

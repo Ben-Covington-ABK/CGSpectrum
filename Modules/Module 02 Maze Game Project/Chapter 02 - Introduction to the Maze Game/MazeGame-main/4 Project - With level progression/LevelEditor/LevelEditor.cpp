@@ -2,6 +2,11 @@
 #include <conio.h>
 #include <windows.h>
 #include <fstream>
+#include <string>
+#include <filesystem>
+#include <vector>
+
+namespace fs = std::filesystem;
 
 using namespace std;
 
@@ -41,7 +46,7 @@ int main()
 	int levelWidth;
 	int levelHeight;
 	bool done = false;
-
+	vector<string> files;
 	while (!done)
 	{
 		system("cls");
@@ -52,18 +57,36 @@ int main()
 
 		int input;
 		cin >> input;
-
+		system("cls");
 		if (input == 1)
 		{
+			int count = 0;
+			string path = "../";
+			for (const auto& entry : fs::directory_iterator(path))
+			{
+				string ext = entry.path().extension().string();
+				if(ext == ".txt")
+				{
+					files.push_back(entry.path().string());
+					cout << ++count << entry.path() << endl;
+				}
+			}
+			/* Old Level code.
 			// Load Level
 			cout << "Enter Level name: ";
 			string levelName;
 			cin >> levelName;
 
 			levelName.insert(0, "../");
-
+			*/
+			cout << "Please select a file." << endl;
+			cin >> input;
+			system("cls");
 			ifstream levelFile;
-			levelFile.open(levelName);
+			string filePath = files.at(input-1);
+			cout << filePath;
+			levelFile.open(filePath);
+			//levelFile.open(levelName);
 
 			if (!levelFile)
 			{
