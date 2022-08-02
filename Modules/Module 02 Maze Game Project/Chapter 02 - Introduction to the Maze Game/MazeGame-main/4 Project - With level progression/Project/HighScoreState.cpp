@@ -28,15 +28,11 @@ bool HighScoreState::Update(bool processInput)
 void HighScoreState::Draw()
 {
 	system("cls");
-	cout << endl << endl << endl;
-	cout << "          - - - HIGH SCORES - - -" << endl << endl;
-
+	cout << "\n\t--- HIGH SCORES ---" << endl << endl;
 	for (auto i = m_HighScores.rbegin(); i != m_HighScores.rend(); ++i)
 	{
-		cout << "             " << *i << endl;
+		cout << "\t" << *i << endl;
 	}
-
-	cout << endl << endl;
-	cout << "             Press any key to go back to the main menu" << endl << endl << endl;
+	cout << "\n\tPress any key to go back to the main menu" << endl << endl << endl;
 
 }

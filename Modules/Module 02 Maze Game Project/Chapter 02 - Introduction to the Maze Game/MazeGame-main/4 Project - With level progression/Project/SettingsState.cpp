@@ -41,9 +41,8 @@ bool SettingsState::Update(bool processInput)
 void SettingsState::Draw()
 {
 	system("cls");
-	cout << endl << endl << endl;
-	cout << "          - - - Settings - - -" << endl << endl;
-	cout << "             " << kSound << ". Toggle Sound: ";
+	cout << "\n\t--- Settings ---" << endl << endl;
+	cout << "\t" << kSound << ". Toggle Sound: ";
 	if (AudioManager::GetInstance()->IsSoundOn())
 	{
 		cout << "ON" << endl;
@@ -52,5 +51,5 @@ void SettingsState::Draw()
 	{
 		cout << "OFF" << endl;
 	}
-	cout << "             " << kMainMenu << ". Back to Main Menu " << endl;
+	cout << "\t" << kMainMenu << ". Back to Main Menu " << endl;
 }

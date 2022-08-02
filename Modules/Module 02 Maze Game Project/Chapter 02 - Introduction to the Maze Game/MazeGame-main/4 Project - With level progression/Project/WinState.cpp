@@ -26,8 +26,7 @@ bool WinState::Update(bool processInput)
 void WinState::Draw()
 {
 	system("cls");
-	cout << endl << endl << endl;
-	cout << "          - - - WELL DONE - - -" << endl << endl;
-	cout << "             You beat the game!" << endl << endl << endl;
-	cout << "             Press any key to go back to the main menu" << endl << endl << endl;
+	cout << "\n\t--- WELL DONE ---" << endl;
+	cout << "\tYou beat the game!" << endl;
+	cout << "\tPress any key to go back to the main menu" << endl;
 }

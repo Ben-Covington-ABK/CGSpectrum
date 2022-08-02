@@ -48,10 +48,9 @@ bool MainMenuState::Update(bool processInput)
 void MainMenuState::Draw()
 {
 	system("cls");
-	cout << endl << endl << endl;
-	cout << "          - - - MAIN MENU - - -" << endl << endl;
-	cout << "             " << kPlay << ". Play " << endl;
-	cout << "             " << kHighScore << ". High Score " << endl;
-	cout << "             " << kSettings << ". Settings " << endl;
-	cout << "             " << kQuit << ". Quit " << endl;
+	cout << "\n\t--- MAIN MENU ---" << endl << endl;
+	cout << "\t" << kPlay << ". Play " << endl;
+	cout << "\t" << kHighScore << ". High Score " << endl;
+	cout << "\t" << kSettings << ". Settings " << endl;
+	cout << "\t" << kQuit << ". Quit " << endl;
 }
