@@ -50,12 +50,7 @@ Path A_Star(NodeMap groups, char start, char goal, int h = 0)
 	return path;
 }
 
-void add(Graph& g, char x, char y, int z)
-{
-	g.push_back(Edge{x, y, z});
-}
-
-auto group(Graph graph)
+NodeMap group(Graph graph)
 {
 	NodeMap groups;
 	for (Edge t : graph)
@@ -68,7 +63,6 @@ auto group(Graph graph)
 	return groups;
 }
 
-// Logs each edge to the console.
 void printGraph(Graph graph)
 {
 	for (Edge edge : graph) 
@@ -113,18 +107,19 @@ void printPath(Path path)
 int main()
 {
 	Graph graph;
-	add(graph, 'a', 'b', 5);
-	add(graph, 'b', 'c', 1);
-	add(graph, 'a', 'd', 7);
-	add(graph, 'c', 'd', 1);
+	graph.push_back(Edge{ 'a', 'b', 5 });
+	graph.push_back(Edge{ 'b', 'c', 1 });
+	graph.push_back(Edge{ 'a', 'd', 7 });
+	graph.push_back(Edge{ 'c', 'd', 1 });
+
 	printGraph(graph);
 	cout << endl;
 	
-	auto groups = group(graph);
+	NodeMap groups = group(graph);
 	printGroups(groups);
 	cout << endl;
 
-	auto path = A_Star(groups, 'a', 'd');
+	Path path = A_Star(groups, 'a', 'd');
 	printPath(path);
 	cout << endl;
 
