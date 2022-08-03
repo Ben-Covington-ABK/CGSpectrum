@@ -7,10 +7,10 @@
 
 using namespace std;
 
-//auto Fill(int size);
-auto Fill(int size)
+// Function to fill vector with random numbers
+vector<int> Fill(int size)
 {
-    vector<int> data;
+    vector<int> data;  
     for (int i = 0; i < size; i++)
     {
         // Fill with a random number 1-100
