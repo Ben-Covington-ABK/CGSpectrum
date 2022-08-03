@@ -7,11 +7,16 @@
 
 using namespace std;
 
-auto A_Star(map<char, vector<tuple<char, int>>> groups, char start, char goal, int h = 0)
+typedef tuple<char, char, int> Edge;
+typedef tuple<char, int> Neighbor;
+typedef map<char, vector<Neighbor>> NodeMap;
+typedef tuple<vector<char>, int> Path;
+
+auto A_Star(NodeMap groups, char start, char goal, int h = 0)
 {
 	vector<char> open{ start };
 	vector<char> closed;
-	tuple<vector<char>, int> path{ vector<char>{start}, 0 };
+	Path path{ vector<char>{start}, 0 };
 	while(!open.empty())
 	{
 		char current = open.back();
@@ -19,7 +24,7 @@ auto A_Star(map<char, vector<tuple<char, int>>> groups, char start, char goal, i
 		closed.push_back(current);
 		open.pop_back();
 		int offset = 999;
-		for(auto neighbor : groups[current])
+		for(Neighbor neighbor : groups[current])
 		{
 			char next = get<0>(neighbor);
 			if(!count(closed.begin(), closed.end(), next))
@@ -44,27 +49,27 @@ auto A_Star(map<char, vector<tuple<char, int>>> groups, char start, char goal, i
 	return path;
 }
 
-void add(vector<tuple<char, char, int>>& g, char x, char y, int z)
+void add(vector<Edge>& g, char x, char y, int z)
 {
-	g.push_back(tuple<char, char, int>{x, y, z});
+	g.push_back(Edge{x, y, z});
 }
 
-auto group(vector<tuple<char, char, int>> graph)
+auto group(vector<Edge> graph)
 {
-	map<char, vector<tuple<char, int>>> groups;
-	for (tuple<char, char, int> t : graph)
+	NodeMap groups;
+	for (Edge t : graph)
 	{
-		tuple<char, int> first{ get<1>(t), get<2>(t) };
-		tuple<char, int> second{ get<0>(t), get<2>(t) };
+		Neighbor first{ get<1>(t), get<2>(t) };
+		Neighbor second{ get<0>(t), get<2>(t) };
 		groups[get<0>(t)].push_back(first);
 		groups[get<1>(t)].push_back(second);
 	}
 	return groups;
 }
 
-void printGraph(vector<tuple<char, char, int>> graph)
+void printGraph(vector<Edge> graph)
 {
-	for (auto t : graph) 
+	for (Edge t : graph) 
 	{
 		cout << "(" 
 			<< get<0>(t) << ", "
@@ -73,7 +78,7 @@ void printGraph(vector<tuple<char, char, int>> graph)
 	}
 }
 
-void printGroups(map<char, vector<tuple<char, int>>> groups)
+void printGroups(NodeMap groups)
 {
 	for (auto& pair : groups)
 	{
@@ -88,7 +93,7 @@ void printGroups(map<char, vector<tuple<char, int>>> groups)
 	}
 }
 
-void printPath(tuple<vector<char>, int> path) 
+void printPath(Path path) 
 {
 	int length = get<0>(path).size();
 	cout << "Path from ";
@@ -105,7 +110,7 @@ void printPath(tuple<vector<char>, int> path)
 
 int main()
 {
-	vector<tuple<char, char, int>> graph;
+	vector<Edge> graph;
 	add(graph, 'a', 'b', 5);
 	add(graph, 'b', 'c', 1);
 	add(graph, 'a', 'd', 7);
@@ -117,7 +122,7 @@ int main()
 	printGroups(groups);
 	cout << endl;
 
-	auto path = A_Star(groups, 'd', 'a');
+	auto path = A_Star(groups, 'a', 'd');
 	printPath(path);
 	cout << endl;
 
