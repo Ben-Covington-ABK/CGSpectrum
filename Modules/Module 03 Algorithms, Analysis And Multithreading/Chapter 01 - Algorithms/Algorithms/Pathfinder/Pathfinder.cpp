@@ -8,11 +8,12 @@
 using namespace std;
 
 // Define names for types
+typedef vector<char> Steps;
 typedef tuple<char, char, int> Edge;
 typedef vector<Edge> Graph;
 typedef tuple<char, int> Neighbor;
 typedef map<char, vector<Neighbor>> NodeMap;
-typedef tuple<vector<char>, int> Path;
+typedef tuple<Steps, int> Path;
 
 // Define enums for tuples
 enum EDGE {first, second, cost};
@@ -21,9 +22,9 @@ enum PATH {steps, total};
 
 Path A_Star(NodeMap groups, char start, char goal, int h = 0)
 {
-	vector<char> open{ start };
-	vector<char> closed;
-	Path path{ vector<char>{start}, 0 };
+	Steps open{ start };
+	Steps closed;
+	Path path{ Steps{start}, 0 };
 	while(!open.empty())
 	{
 		char current = open.back();
