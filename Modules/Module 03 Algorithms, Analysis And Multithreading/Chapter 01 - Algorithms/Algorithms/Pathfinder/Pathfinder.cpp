@@ -7,11 +7,17 @@
 
 using namespace std;
 
+// Define names for types
 typedef tuple<char, char, int> Edge;
 typedef vector<Edge> Graph;
 typedef tuple<char, int> Neighbor;
 typedef map<char, vector<Neighbor>> NodeMap;
 typedef tuple<vector<char>, int> Path;
+
+// Define enums for tuples
+enum EDGE {first, second, cost};
+enum NEIGHBOR {next, cost};
+enum PATH {steps, total};
 
 Path A_Star(NodeMap groups, char start, char goal, int h = 0)
 {
@@ -27,18 +33,18 @@ Path A_Star(NodeMap groups, char start, char goal, int h = 0)
 		int offset = 999;
 		for(Neighbor neighbor : groups[current])
 		{
-			char next = get<0>(neighbor);
+			char next = get<NEIGHBOR::next>(neighbor);
 			if(!count(closed.begin(), closed.end(), next))
 			{
-				int cost = get<1>(neighbor);
-				int total = get<1>(path);
+				int cost = get<NEIGHBOR::cost>(neighbor);
+				int total = get<PATH::total>(path);
 				int newTotal = total + cost;
 				int largest = total + offset;
 				if (total == 0 || newTotal < largest)
 				{
 					offset = 0;
-					get<0>(path).push_back(next);
-					get<1>(path) = newTotal;
+					get<PATH::steps>(path).push_back(next);
+					get<PATH::total>(path) = newTotal;
 					if(!count(open.begin(), open.end(), next))
 					{
 						open.push_back(next);
@@ -53,12 +59,12 @@ Path A_Star(NodeMap groups, char start, char goal, int h = 0)
 NodeMap group(Graph graph)
 {
 	NodeMap groups;
-	for (Edge t : graph)
+	for (Edge edge : graph)
 	{
-		Neighbor first{ get<1>(t), get<2>(t) };
-		Neighbor second{ get<0>(t), get<2>(t) };
-		groups[get<0>(t)].push_back(first);
-		groups[get<1>(t)].push_back(second);
+		Neighbor first{ get<EDGE::second>(edge), get<EDGE::cost>(edge) };
+		Neighbor second{ get<EDGE::first>(edge), get<EDGE::cost>(edge) };
+		groups[get<EDGE::first>(edge)].push_back(first);
+		groups[get<EDGE::second>(edge)].push_back(second);
 	}
 	return groups;
 }
@@ -68,9 +74,9 @@ void printGraph(Graph graph)
 	for (Edge edge : graph) 
 	{
 		cout << "(" 
-			<< get<0>(edge) << ", "
-			<< get<1>(edge) << ", " 
-			<< get<2>(edge) << ")\n";
+			<< get<EDGE::first>(edge) << ", "
+			<< get<EDGE::second>(edge) << ", " 
+			<< get<EDGE::cost>(edge) << ")\n";
 	}
 }
 
@@ -81,8 +87,8 @@ void printGroups(NodeMap groups)
 		cout << "{ " << pair.first << " : ";
 		for (int i = 0; i < pair.second.size(); i++)
 		{
-			cout << "[" << get<0>(pair.second[i])
-				<< ", " << get<1>(pair.second[i]) << "]"
+			cout << "[" << get<NEIGHBOR::next>(pair.second[i])
+				<< ", " << get<NEIGHBOR::cost>(pair.second[i]) << "]"
 				<< (i < pair.second.size() - 1 ? ", " : " ");
 		}
 		cout << "}\n";
