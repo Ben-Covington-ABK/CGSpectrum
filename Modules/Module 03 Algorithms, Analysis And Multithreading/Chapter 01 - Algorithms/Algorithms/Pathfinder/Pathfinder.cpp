@@ -8,11 +8,12 @@
 using namespace std;
 
 typedef tuple<char, char, int> Edge;
+typedef vector<Edge> Graph;
 typedef tuple<char, int> Neighbor;
 typedef map<char, vector<Neighbor>> NodeMap;
 typedef tuple<vector<char>, int> Path;
 
-auto A_Star(NodeMap groups, char start, char goal, int h = 0)
+Path A_Star(NodeMap groups, char start, char goal, int h = 0)
 {
 	vector<char> open{ start };
 	vector<char> closed;
@@ -49,12 +50,12 @@ auto A_Star(NodeMap groups, char start, char goal, int h = 0)
 	return path;
 }
 
-void add(vector<Edge>& g, char x, char y, int z)
+void add(Graph& g, char x, char y, int z)
 {
 	g.push_back(Edge{x, y, z});
 }
 
-auto group(vector<Edge> graph)
+auto group(Graph graph)
 {
 	NodeMap groups;
 	for (Edge t : graph)
@@ -67,14 +68,15 @@ auto group(vector<Edge> graph)
 	return groups;
 }
 
-void printGraph(vector<Edge> graph)
+// Logs each edge to the console.
+void printGraph(Graph graph)
 {
-	for (Edge t : graph) 
+	for (Edge edge : graph) 
 	{
 		cout << "(" 
-			<< get<0>(t) << ", "
-			<< get<1>(t) << ", " 
-			<< get<2>(t) << ")\n";
+			<< get<0>(edge) << ", "
+			<< get<1>(edge) << ", " 
+			<< get<2>(edge) << ")\n";
 	}
 }
 
@@ -110,7 +112,7 @@ void printPath(Path path)
 
 int main()
 {
-	vector<Edge> graph;
+	Graph graph;
 	add(graph, 'a', 'b', 5);
 	add(graph, 'b', 'c', 1);
 	add(graph, 'a', 'd', 7);
