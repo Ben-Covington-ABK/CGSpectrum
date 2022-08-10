@@ -30,7 +30,7 @@ bool StateMachineExampleGame::UpdateCurrentState(bool processInput)
 	}
 
 	if (m_pCurrentState != nullptr)
-	{
+	{		
 		done = m_pCurrentState->Update(processInput);
 	}
 	return done;

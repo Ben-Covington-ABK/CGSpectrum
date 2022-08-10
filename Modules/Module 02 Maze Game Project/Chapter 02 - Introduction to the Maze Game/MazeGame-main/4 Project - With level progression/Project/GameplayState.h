@@ -32,6 +32,8 @@ public:
 	virtual bool Update(bool processInput = true) override;
 	virtual void Draw() override;
 
+	void Escape();
+	void ProcessInput(Player m_player, int input);
 private:
 	void HandleCollision(int newPlayerX, int newPlayerY);
 	bool Load();

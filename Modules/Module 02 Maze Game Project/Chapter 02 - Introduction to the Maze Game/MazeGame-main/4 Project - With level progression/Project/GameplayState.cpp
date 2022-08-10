@@ -2,8 +2,10 @@
 
 #include <iostream>
 #include <conio.h>
+#include <chrono>
 #include <windows.h>
 #include <assert.h>
+#include <thread>
 
 #include "Enemy.h"
 #include "Key.h"
@@ -24,6 +26,19 @@ constexpr int kUpArrow = 72;
 constexpr int kDownArrow = 80;
 constexpr int kEscapeKey = 27;
 
+int input = NULL;
+bool hasInput = false;
+
+void GetInput()
+{
+	while (!hasInput)
+	{
+		input = _getch();
+		cout << "Input: " << input;
+		hasInput = true;
+	}
+}
+
 void ClearScreen()
 {
 	COORD cursorPosition;
@@ -42,6 +57,9 @@ GameplayState::GameplayState(StateMachineExampleGame* pOwner)
 	m_LevelNames.push_back("Level1.txt");
 	m_LevelNames.push_back("Level2.txt");
 	m_LevelNames.push_back("Level3.txt");
+	std::thread ioThread(GetInput);
+	ioThread.detach();
+	//ioThread.join();
 }
 
 GameplayState::~GameplayState()
@@ -69,48 +87,70 @@ void GameplayState::Enter()
 	Load();
 }
 
+void GameplayState::ProcessInput(Player m_player, int input)
+{
+
+}
+
+void GameplayState::Escape()
+{
+	m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
+}
+
 bool GameplayState::Update(bool processInput)
 {
 	if (processInput && !m_beatLevel)
 	{
-		int input = _getch();
-		int arrowInput = 0;
+		//std::thread update(&GameplayState::ProcessInput);
+		//update.join();
+		this_thread::sleep_for(chrono::milliseconds(200));
+
 		int newPlayerX = m_player.GetXPosition();
 		int newPlayerY = m_player.GetYPosition();
 
-		// One of the arrow keys were pressed
-		if (input == kArrowInput)
+		if(hasInput)
 		{
-			arrowInput = _getch();
-		}
+			//int input = _getch();
+			int arrowInput = 0;
 
-		if ((input == kArrowInput && arrowInput == kLeftArrow) ||
-			(char)input == 'A' || (char)input == 'a')
-		{
-			newPlayerX--;
-		}
-		else if ((input == kArrowInput && arrowInput == kRightArrow) ||
-			(char)input == 'D' || (char)input == 'd')
-		{
-			newPlayerX++;
-		}
-		else if ((input == kArrowInput && arrowInput == kUpArrow) ||
-			(char)input == 'W' || (char)input == 'w')
-		{
-			newPlayerY--;
-		}
-		else if ((input == kArrowInput && arrowInput == kDownArrow) ||
-			(char)input == 'S' || (char)input == 's')
-		{
-			newPlayerY++;
-		}
-		else if (input == kEscapeKey)
-		{
-			m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
-		}
-		else if ((char)input == 'Z' || (char)input == 'z')
-		{
-			m_player.DropKey();
+			// One of the arrow keys were pressed
+			if (input == kArrowInput)
+			{
+				//arrowInput = input;
+				arrowInput = _getch();
+			}
+
+			if ((input == kArrowInput && arrowInput == kLeftArrow) ||
+				(char)input == 'A' || (char)input == 'a')
+			{
+				newPlayerX--;
+			}
+			else if ((input == kArrowInput && arrowInput == kRightArrow) ||
+				(char)input == 'D' || (char)input == 'd')
+			{
+				newPlayerX++;
+			}
+			else if ((input == kArrowInput && arrowInput == kUpArrow) ||
+				(char)input == 'W' || (char)input == 'w')
+			{
+				newPlayerY--;
+			}
+			else if ((input == kArrowInput && arrowInput == kDownArrow) ||
+				(char)input == 'S' || (char)input == 's')
+			{
+				newPlayerY++;
+			}
+			else if (input == kEscapeKey)
+			{
+				m_pOwner->LoadScene(StateMachineExampleGame::SceneName::MainMenu);
+			}
+			else if ((char)input == 'Z' || (char)input == 'z')
+			{
+				m_player.DropKey();
+			}
+
+			hasInput = false;
+			input = NULL;
 		}
 
 		// If position never changed
@@ -122,6 +162,12 @@ bool GameplayState::Update(bool processInput)
 		{
 			HandleCollision(newPlayerX, newPlayerY);
 		}
+
+		/*
+		int newPlayerX = m_player.GetXPosition();
+		int newPlayerY = m_player.GetYPosition();
+		HandleCollision(newPlayerX, newPlayerY);
+		*/
 	}
 	if (m_beatLevel)
 	{

@@ -2,24 +2,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <map>
+
+#define NAME(var) (#var)
 
 using namespace std;
-
-/*
-template<typename... Arguments>
-auto print(vector<Arguments>... args)
-{
-	constexpr auto numargs{ sizeof...(Arguments) };
-	for( auto arg : ...args)
-	{
-		cout << arg;
-	}
-	return args;
-	//X xobj[numargs]; // array of some previously defined type X
-
-	//helper_func(xobj, args...);
-}
-*/
 
 void tprintf(const char* format) // base function
 {
@@ -41,16 +28,41 @@ void tprintf(const char* format, T value, Targs... Fargs) // recursive variadic 
 	}
 }
 
+void printChars()
+{
+	char t = 9, sc = 58, n = 10;
+	for (int i = 1; i <= 256; i++)
+	{
+		cout << i << sc << (char)i
+			<< (i % 8 == 0 ? n : t);
+	}
+}
+
+
 int main()
 {
-	tprintf("% world% %\n", "Hello", '!', 123);
-	cout << endl;
-	for(int i = 1; i <= 256; i++)
+	//tprintf("% world% %\n", "Hello", '!', 123);
+	//printChars();
+
+	void (*greet)() = []() 
 	{
-		cout << i << ":" << (char)i << "\t";
-		if(i % 8 == 0)
-		{
-			cout << "\n";
-		}
-	}
+		cout << "Hello World!\n";
+	};
+
+	cout << typeid(greet).name() << endl;
+	greet();
+
+	vector<void (*)()> vec{ greet };
+
+	//vec.push_back(((*greet));
+
+	cout << typeid(vec[0]).name() << endl;
+	vec[0]();
+
+
+	map<string, void(*)()> utils;
+	cout << "Name: " << NAME(greet) << endl;
+	utils[NAME(greet)] = greet;
+	utils[NAME(greet)]();
+
 }
