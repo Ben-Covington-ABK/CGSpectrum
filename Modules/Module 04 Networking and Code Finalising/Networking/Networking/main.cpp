@@ -9,6 +9,8 @@
 using namespace std;
 typedef vector<ENetPeer*> ENetPeers;
 
+string number;
+int range = 1;
 bool active = true;
 ENetAddress address;
 ENetHost* server;
@@ -16,21 +18,35 @@ ENetHost* client;
 ENetPeer* peer;
 ENetPeers peers;
 ENetEvent event;
-int number;
-
-vector<string> StartModes
-{ 
+vector<string> StartModes { 
 	"Create Server", 
 	"Create Client", 
 	"Exit"
 };
-vector<string> GameModes
-{
+vector<string> GameModes {
 	"Guessing Game",
 	"Chat Room",
 	"Exit"
 };
 
+void EraseLine()
+{
+	cout << "\x1b[2K"	// Delete current line
+		<< "\x1b[1A"	// Move cursor up one
+		<< "\x1b[2K"	// Delete the entire line
+		<< "\r";		// Resume the cursor at beginning of line
+}
+string EnterLine()
+{
+	string line;
+	getline(cin, line);
+	EraseLine();
+	return line;
+}
+string NewNumber()
+{
+	return to_string(rand() % range + 1);
+}
 int Select(vector<string> options)
 {
 	string input;
@@ -144,62 +160,44 @@ void PollServer()
 		switch (event.type)
 		{
 		case ENET_EVENT_TYPE_CONNECT:
-			/*
-			printf("A new client connected from %x:%u.\n",
-				event.peer->address.host,
-				event.peer->address.port);
-			*/
 			cout << "A new client connected from "
 				<< event.peer->address.host << " : "
 				<< event.peer->address.port << ".\n";
 
-			peers.push_back(event.peer);
-
 			/* Store any relevant client information here. */
-			//event.peer->data = (void*)"Client information";
 			event.peer->data = (void*)event.peer->address.port;
-			
+			peers.push_back(event.peer);
 			break;
 		case ENET_EVENT_TYPE_RECEIVE:
 		{
-			//data = string((char*)event.packet->data, event.packet->dataLength);
-			/*
-			printf("A packet of length %u containing %s was received from %s on channel %u.\n",
-				event.packet->dataLength,
-				event.packet->data,
-				event.peer->data,
-				event.channelID);
-			*/
-			cout << "A packet of length " << event.packet->dataLength
-				<< " containing " << event.packet->data
-				<< " was received from " << (int)event.peer->data
-				<< " on channel " << event.channelID << ".\n";
-			
+			int len = (int)event.packet->dataLength;
+			int id = (int)event.peer->data;
 			string rawData = (char*)event.packet->data;
 			int game = atoi(rawData.substr(0, 1).c_str());
 			string data = rawData.substr(2);
-
-			cout << endl << game << "|" << data << endl;
-
+			cout << "A packet of length " << len
+				<< " was received from " << id 
+				<< " containing " << rawData << ".\n";
+				//<< " on channel " << event.channelID
 			switch(game)
 			{
-			case 1:
+			case 1: // Guessing Game
 			{
-				int guess = atoi(data.c_str());
-				if(guess == number)
+				if(data == number)
 				{
-					Broadcast(server, "Correct! number was " + to_string(number));
+					Broadcast(server, data + " was the correct number!");
 				}
 				else
 				{
-					Broadcast(server, "Incorrect! number was " + to_string(number));
+					Broadcast(server, data + " is incorrect." + 
+						" The number was " + number + ".");
 				}
-				number = rand() % 100 + 1;
+				number = NewNumber();
 				break;
 			}
-			case 2:
+			case 2: // Chat Room
 			{
-				Broadcast(server, to_string((int)event.peer->data) + ": " + data);
+				Broadcast(server, to_string(id) + ": " + data);
 				break;
 			}
 			default:
@@ -207,7 +205,6 @@ void PollServer()
 				break;
 			}
 			}
-
 
 			/* Clean up the packet now that we're done using it. */
 			enet_packet_destroy(event.packet);
@@ -260,7 +257,7 @@ void UpdateClient()
 			string message;
 			while(true)
 			{
-				getline(cin, message);
+				message = EnterLine();
 				message = "1|" + message;
 				Broadcast(client, message);
 			}
@@ -274,7 +271,7 @@ void UpdateClient()
 			string message;
 			while (true)
 			{
-				getline(cin, message);
+				message = EnterLine();
 				message = "2|" + message;
 				Broadcast(client, message);
 			}
@@ -311,7 +308,7 @@ int main(int argc, char** argv)
 		case 1: // Server
 		{
 			CreateServer();
-			number = rand() % 100 + 1;
+			number = NewNumber();
 			thread serverPoller { PollServer };
 			UpdateServer();
 			enet_host_destroy(server);
