@@ -1,0 +1,7 @@
+C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\Definitions.Tantrum.h
+C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Source\Tantrum\Public\DoorInteractionComponent.h
+C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Inc\Tantrum\DoorInteractionComponent.generated.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/TriggerBox.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\Engine\Classes\Engine/TriggerBase.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TriggerBase.generated.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Intermediate\Build\Win64\UE4Editor\Inc\Engine\TriggerBox.generated.h

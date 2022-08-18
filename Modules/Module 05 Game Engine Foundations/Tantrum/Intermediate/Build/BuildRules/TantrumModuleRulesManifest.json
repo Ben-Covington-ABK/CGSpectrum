@@ -1,0 +1,8 @@
+{
+	"SourceFiles": [
+		"C:\\Users\\bcovington\\Documents\\GitHub\\CGSpectrum\\Modules\\Module 05 Game Engine Foundations\\Tantrum\\Source\\Tantrum\\Tantrum.Build.cs",
+		"C:\\Users\\bcovington\\Documents\\GitHub\\CGSpectrum\\Modules\\Module 05 Game Engine Foundations\\Tantrum\\Source\\Tantrum.Target.cs",
+		"C:\\Users\\bcovington\\Documents\\GitHub\\CGSpectrum\\Modules\\Module 05 Game Engine Foundations\\Tantrum\\Source\\TantrumEditor.Target.cs"
+	],
+	"EngineVersion": "4.27.2"
+}

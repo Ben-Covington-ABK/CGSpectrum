@@ -1,0 +1,2 @@
+C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\Definitions.Tantrum.h
+C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Source\Tantrum\Tantrum.h

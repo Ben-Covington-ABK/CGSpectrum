@@ -1,0 +1,14 @@
+{
+	"Targets": [
+		{
+			"Name": "Tantrum",
+			"Path": "C:\\Users\\bcovington\\Documents\\GitHub\\CGSpectrum\\Modules\\Module 05 Game Engine Foundations\\Tantrum\\Source\\Tantrum.Target.cs",
+			"Type": "Game"
+		},
+		{
+			"Name": "TantrumEditor",
+			"Path": "C:\\Users\\bcovington\\Documents\\GitHub\\CGSpectrum\\Modules\\Module 05 Game Engine Foundations\\Tantrum\\Source\\TantrumEditor.Target.cs",
+			"Type": "Editor"
+		}
+	]
+}

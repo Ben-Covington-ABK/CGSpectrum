@@ -1,0 +1,17 @@
+/NOLOGO
+/errorReport:prompt
+/MACHINE:x64
+/SUBSYSTEM:WINDOWS
+/DEF
+/NAME:"UE4Editor-Tantrum-7327.dll"
+/IGNORE:4221
+/NODEFAULTLIB
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\TantrumEditor\Development\Engine\SharedPCH.Engine.ShadowErrors.h.obj"
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\DoorInteractionComponent.cpp.obj"
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\Tantrum.cpp.obj"
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\TantrumGameModeBase.cpp.obj"
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\DoorInteractionComponent.gen.cpp.obj"
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\Tantrum.init.gen.cpp.obj"
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\TantrumGameModeBase.gen.cpp.obj"
+"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\Default.rc2.res"
+/OUT:"C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\UE4Editor-Tantrum-7327.lib"

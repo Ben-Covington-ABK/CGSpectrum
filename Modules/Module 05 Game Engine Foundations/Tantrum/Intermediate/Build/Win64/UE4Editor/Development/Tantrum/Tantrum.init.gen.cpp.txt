@@ -1,0 +1,3 @@
+C:\Users\bcovington\Documents\GitHub\CGSpectrum\Modules\Module 05 Game Engine Foundations\Tantrum\Intermediate\Build\Win64\UE4Editor\Development\Tantrum\Definitions.Tantrum.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/GeneratedCppIncludes.h
+C:\Program Files\Epic Games\UE_4.27\Engine\Source\Runtime\CoreUObject\Public\UObject/MetaData.h

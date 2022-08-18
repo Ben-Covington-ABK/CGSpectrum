@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="..\..\Tantrum.uproject" />
+    <Filter Include="Source">
+      <UniqueIdentifier>{7EEBB35B-6477-404A-A49A-234AD96DA066}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Tantrum.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <None Include="..\..\Source\TantrumEditor.Target.cs">
+      <Filter>Source</Filter>
+    </None>
+    <Filter Include="Config">
+      <UniqueIdentifier>{EB729728-8530-4ACD-A0CE-6E16826317EF}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Config\DefaultEditor.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultEngine.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="..\..\Config\DefaultGame.ini">
+      <Filter>Config</Filter>
+    </None>
+    <Filter Include="Source\Tantrum">
+      <UniqueIdentifier>{F096F16D-04A8-4F8D-98E4-3FF7DBD08E2C}</UniqueIdentifier>
+    </Filter>
+    <None Include="..\..\Source\Tantrum\Tantrum.Build.cs">
+      <Filter>Source\Tantrum</Filter>
+    </None>
+    <ClCompile Include="..\..\Source\Tantrum\Tantrum.cpp">
+      <Filter>Source\Tantrum</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Tantrum\Tantrum.h">
+      <Filter>Source\Tantrum</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\Source\Tantrum\TantrumGameModeBase.cpp">
+      <Filter>Source\Tantrum</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\Source\Tantrum\TantrumGameModeBase.h">
+      <Filter>Source\Tantrum</Filter>
+    </ClInclude>
+    <Filter Include="Source\Tantrum\Private">
+      <UniqueIdentifier>{39CDC2EA-C9F6-426C-89E5-DFCF3947CF81}</UniqueIdentifier>
+    </Filter>
+    <ClCompile Include="..\..\Source\Tantrum\Private\CustomGameMode.cpp">
+      <Filter>Source\Tantrum\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Tantrum\Private\CustomPlayerCharacter.cpp">
+      <Filter>Source\Tantrum\Private</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Tantrum\Private\DoorInteractionComponent.cpp">
+      <Filter>Source\Tantrum\Private</Filter>
+    </ClCompile>
+    <Filter Include="Source\Tantrum\Public">
+      <UniqueIdentifier>{BBCFB61D-02BC-421B-A622-A5A6D35B0480}</UniqueIdentifier>
+    </Filter>
+    <ClInclude Include="..\..\Source\Tantrum\Public\CustomGameMode.h">
+      <Filter>Source\Tantrum\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tantrum\Public\CustomPlayerCharacter.h">
+      <Filter>Source\Tantrum\Public</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Tantrum\Public\DoorInteractionComponent.h">
+      <Filter>Source\Tantrum\Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
